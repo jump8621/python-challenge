@@ -9,27 +9,63 @@ def sum(numbers):
     total = total + 1
     return total
 
+#funtion to get unique values
+#def unique(all_canidates):
+
 election_data_csv = os.path.join('resources', 'election_data.csv')
 
 with open(election_data_csv, 'r') as csvfile:
+
     csvreader = csv.reader(csvfile, delimiter=',')
 
     header = next(csvreader)
 
     voter_ID = []
+    can_list = []
 
+    numb_votes = {}
+    numb_votes = dict()
 
-
+    numb_votes['candidate'] = 'Khan'
+    numb_votes["candidate"] = can_list
+    numb_votes["votes"] = 1 
 
     for row in csvreader:
-        #voter_ID = int(row[0])
         
-        #voter_ID = row [0]
-        #total_voters = voter_ID.append(int(row[0]))
         
         voter_ID.append(row[0])
-        #sum(total_voters)
+       
+        electees = row[2]
+        if electees not in can_list:
+            can_list.append(electees)
+        numb_votes = {electees}
+        if "candidate" == 'Khan':
+            numb_votes: votes + 1
+        elif "candidate" == 'Correy':
+            numb_votes: votes + 1
+        elif "candidate" ==  'Li':
+            numb_votes: votes + 1
+        elif "candidate" == "O'Tooley":
+            numb_votes: votes + 1 
 
+        
+
+
+   
+        
+        
+    print(len(voter_ID))
+    print(can_list)
+        
+
+
+   # print(all_canidates)
+        #all_canidates = unique(electees)
+       # for word in unique_all_canidates:
+        #    if word not in unique_all_canidates:
+         #       unique_all_canidates.append(word)
+        #for word in unique_all_canidates:
+         #   print(word)
         
 
         
@@ -42,5 +78,4 @@ with open(election_data_csv, 'r') as csvfile:
         #savedvalue = value
         #month_total.append(row[0])
 
-    print(len(voter_ID))
 
