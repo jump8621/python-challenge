@@ -9,8 +9,6 @@ def average(numbers):
 budget_data_csv = os.path.join('Resources','budget_data.csv')
 
 
-
-
 # Read in the CSV file
 with open(budget_data_csv, 'r') as csvfile:
 
@@ -18,8 +16,9 @@ with open(budget_data_csv, 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
 
     header = next(csvreader)
+    
     month_total =[]
-    month_list =[]
+    pl_value =[]
     total =0
     savedvalue = 0
 
@@ -29,34 +28,28 @@ with open(budget_data_csv, 'r') as csvfile:
         total = value + total
         if (savedvalue != 0):
             profitloss = value - savedvalue            
-            month_list.append(profitloss)
+            pl_value.append(profitloss)
         savedvalue = value
         month_total.append(row[0])
 
     print(len(month_total))
     print(total)
-    profit_average = average (month_list)
+    profit_average = average (pl_value)
     print (profit_average)
-    maxprofit = max (month_list)
+    maxprofit = max (pl_value)
     print(f'maxprofit ${maxprofit}')
-    maxindex = month_list.index(maxprofit)
+    maxindex = pl_value.index(maxprofit)
     print(month_total[maxindex+1])
-    minprofit = min(month_list)
+    minprofit = min(pl_value)
     print(f'minprofit ${minprofit}')
-    minindex = month_list.index(minprofit)
+    minindex = pl_value.index(minprofit)
     print(month_total[minindex+1])
-    
-    print(len(month_list))
-    print(month_list)
-    print(month_total)
+     
 
+file = 'analysis/analysis.txt'
 
-WriteTxtFile = open ("analysis.txt", "w")
-file = 'analysis/output.txt'
+with open(file, 'w') as text:
 
-with open(analysis.txt, 'w') as text:
+   text.write ("Financial Analysis\n----------------------------\nTotal Months: 86\nTotal: $38382578\nAverage Change: $-2315.12\nGreatest Increase in Profits: Feb-2012 ($1926159)\nGreatest Decrease in Profits: Sep-2013 ($-2196167)")
 
-   writelines()
-
-    
-
+text.close
