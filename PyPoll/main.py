@@ -24,11 +24,12 @@ with open(election_data_csv, 'r') as csvfile:
     can_list = []
 
     numb_votes = {}
-    numb_votes = dict()
+    #numb_votes = dict()
+    
 
-    numb_votes['candidate'] = 'Khan'
-    numb_votes["candidate"] = can_list
-    numb_votes["votes"] = 1 
+    #numb_votes['candidate'] = 'Khan'
+    #numb_votes["candidate"] = can_list
+    #numb_votes["votes"] = 1 
 
     for row in csvreader:
         
@@ -38,26 +39,36 @@ with open(election_data_csv, 'r') as csvfile:
         electees = row[2]
         if electees not in can_list:
             can_list.append(electees)
-        numb_votes = {electees}
-        if "candidate" == 'Khan':
-            numb_votes: votes + 1
-        elif "candidate" == 'Correy':
-            numb_votes: votes + 1
-        elif "candidate" ==  'Li':
-            numb_votes: votes + 1
-        elif "candidate" == "O'Tooley":
-            numb_votes: votes + 1 
+        if electees not in numb_votes:
+            numb_votes[electees] = 1
+        else:
+            numb_votes[electees] = numb_votes[electees] + 1
+        #numb_votes[electees] = 1
+        #numb_votes[electees] = can_list + 1
+        #numb_votes = {electees}
+        #if "candidate" == 'Khan':
+            #numb_votes: "votes" + 1
+        #elif "candidate" == 'Correy':
+            #numb_votes: "votes" + 1
+        #elif "candidate" ==  'Li':
+            #numb_votes: "votes" + 1
+        #elif "candidate" == "O'Tooley":
+            #numb_votes: "votes" + 1 
 
         
 
 
    
         
-        
+    print(numb_votes)    
     print(len(voter_ID))
     print(can_list)
-        
+    for x in can_list:
 
+        print(x,numb_votes[x],(numb_votes[x]/(len(voter_ID))*100))
+        
+    #print(f'{numb_votes["candidates"]}{numb_votes["votes"]}') 
+    #print("candidates" + "votes")
 
    # print(all_canidates)
         #all_canidates = unique(electees)
