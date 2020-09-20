@@ -20,7 +20,7 @@ with open(election_data_csv, 'r') as csvfile:
 
     voter_ID = []
     can_list = []
-
+    #saved_x = 0
     numb_votes = {}
 
     for row in csvreader:
@@ -36,14 +36,49 @@ with open(election_data_csv, 'r') as csvfile:
         else:
             numb_votes[electees] = numb_votes[electees] + 1
    
-        
-    print(len(voter_ID))
-    print(numb_votes)    
-    print(can_list)
+    Total_votes = len(voter_ID)    
+    # print(Total_votes)
+    # print(numb_votes)    
+    # print(can_list)
+    
+    saved_x=0
+
+    print("Election Results")
+    print("----------------------------")
+    print("Total Votes: " + str(Total_votes))
+    print("----------------------------")
+
+
     for x in can_list:
         
-        print(x,numb_votes[x],(numb_votes[x]/(len(voter_ID))*100))
-        print(x,< value numb_votes[x])
+        print(x + ": (" + str(numb_votes[x]) + ")  " + "{:.3f}".format(numb_votes[x]/(len(voter_ID))*100))
+       
+
+        if (numb_votes[x] > saved_x):
+            saved_x = numb_votes[x]
+            saved_name = x    
+
+    print("----------------------------")
+    print("Winner: " + saved_name)    
+    print("----------------------------")
         
-        #if numb_votes[x] > saved x then winner!
-    #print(winner)
+    #f=open("analysis.txt", "w+")   
+
+    file = 'analysis/analysis.txt'
+
+with open(file, 'w') as text:
+
+   #text.write ("Election Results\n--------------------------")
+   text.writelines("Election Results\n")
+   text.writelines("----------------------------\n")
+   text.writelines("Total Votes: " + str(Total_votes) + "\n")
+   text.writelines("----------------------------\n")
+   for x in can_list:
+        
+    text.writelines(x + ": (" + str(numb_votes[x]) + ")  " + "{:.3f}".format(numb_votes[x]/(len(voter_ID))*100) +"%\n")
+   text.writelines("----------------------------\n")
+   text.writelines("Winner: "+ saved_name + "\n")
+   text.writelines("----------------------------\n")
+
+
+text.close
