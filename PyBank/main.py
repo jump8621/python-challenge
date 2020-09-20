@@ -32,24 +32,39 @@ with open(budget_data_csv, 'r') as csvfile:
         savedvalue = value
         month_total.append(row[0])
 
-    print(len(month_total))
-    print(total)
+    #print(len(month_total))
+    #print(total)
     profit_average = average (pl_value)
-    print (profit_average)
+    #print (profit_average)
     maxprofit = max (pl_value)
-    print(f'maxprofit ${maxprofit}')
+    #print(f'maxprofit ${maxprofit}')
     maxindex = pl_value.index(maxprofit)
-    print(month_total[maxindex+1])
+    #print(month_total[maxindex+1])
     minprofit = min(pl_value)
-    print(f'minprofit ${minprofit}')
+    #print(f'minprofit ${minprofit}')
     minindex = pl_value.index(minprofit)
-    print(month_total[minindex+1])
+    #print(month_total[minindex+1])
      
+
+    print("Financial Analysis")
+    print("----------------------------")
+    print("Total Months: " + str(len(month_total)))
+    print("Total: $" + str(total))
+    print("Average Change: $" + "{:.3f}".format(profit_average))
+    print("Greatest Increase in Profits: " + month_total[maxindex+1] + "  $" + str(maxprofit))
+    print("Greatest Decrease in Profits: " + month_total[minindex+1] + " $" + str(minprofit))
+
 
 file = 'analysis/analysis.txt'
 
 with open(file, 'w') as text:
 
-   text.write ("Financial Analysis\n----------------------------\nTotal Months: 86\nTotal: $38382578\nAverage Change: $-2315.12\nGreatest Increase in Profits: Feb-2012 ($1926159)\nGreatest Decrease in Profits: Sep-2013 ($-2196167)")
+   text.writelines("Financial Analysis\n")
+   text.writelines("----------------------------\n")
+   text.writelines("Total Months: " + str(len(month_total)) + "\n")
+   text.writelines("Total: $" + str(total) + "\n")
+   text.writelines("Average Change: $" + "{:.3f}".format(profit_average) + "\n")
+   text.writelines("Greatest Increase in Profits: " + month_total[maxindex+1] + "  $" + str(maxprofit) +  " \n")
+   text.writelines("Greatest Decrease in Profits: " + month_total[minindex+1] + " $" + str(minprofit))
 
 text.close

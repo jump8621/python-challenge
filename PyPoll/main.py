@@ -1,14 +1,6 @@
 import os
 import csv
 
-def average(numbers):
-    return sum(numbers) / len(numbers)
-
-def sum(numbers):
-    total=0
-    total = total + 1
-    return total
-
 
 election_data_csv = os.path.join('resources', 'election_data.csv')
 
@@ -20,7 +12,6 @@ with open(election_data_csv, 'r') as csvfile:
 
     voter_ID = []
     can_list = []
-    #saved_x = 0
     numb_votes = {}
 
     for row in csvreader:
